@@ -14,9 +14,9 @@ If u want it to be used so that everyone can use it, u can use `Ngrok` as a serv
 | Input       | Information Details |
 |-----------|-------------|
 | URL    | Put with first `http://` |
-| Delay     | Second time |
+| Delay     | Delay for Request Attack |
 | Request per IP     | Whatever what you want put this number |
-| Attack Duration  | Second time |
+| Attack Duration  | Delay for Long Attack |
 | Upload Proxy    | Create a file with any name, but with the `extension .txt` which contains a `proxy list` |
 | Upload User-Agents     | Create a file with any name, but with the `extension .txt` which contains a `User-Agents list` |
 
