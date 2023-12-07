@@ -10,7 +10,7 @@ If u want it to be used so that everyone can use it, u can use `Ngrok` as a serv
 
 The following is cmd management in bot :
 
-| CMD       | Information |
+| Input       | Information Details |
 |-----------|-------------|
 | URL    | Put with first `http://` |
 | Delay     | Second time |
