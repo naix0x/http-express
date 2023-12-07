@@ -46,3 +46,7 @@ ngrok config add-authtoken <token>
 ```javascript
 ngrok http 3000
 ````
+
+#### License
+
+This project is licensed under the [GPL-3.0 License](https://github.com/naix0x/http-express/blob/main/LICENSE).
