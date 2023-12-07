@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Added external CSS file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Added Font Awesome for icons -->
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    #resultBox {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .fail {
+      color: red;
+    }
+
+    .center-buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background-color: #f8f9fa;
+      padding: 10px 0;
+    }
+
+    /* Navbar styling */
+    nav {
+      background-color: #343a40;
+      padding: 10px;
+    }
+
+    nav a {
+      color: #ffffff;
+      margin: 0 10px;
+    }
+
+    /* Centering the navbar items */
+    .navbar-nav {
+      margin-left: auto;
+    }
+  </style>
+  <title>DDoS Attack Form</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-light bg-transparent">
+  <div class="container">
+    <a class="btn btn-outline-light btn-dark" href="https://instagram.com/bovalonee"><i class="fab fa-instagram"></i> Instagram</a>
+    <a class="btn btn-outline-light btn-dark" href="https://github.com/naix0x/"><i class="fab fa-github"></i> GitHub</a>
+    <a class="btn btn-outline-light btn-dark" href="mailto:ask@matic.eu.org"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">HTTP REQ DDOS <i class="fas fa-rocket"></i></h1>
+
+  <form id="ddosForm" action="/start-attack" method="post" enctype="multipart/form-data" class="border p-4 rounded">
+    <div class="mb-3">
+      <label for="url" class="form-label">URL:</label>
+      <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL">
+    </div>
+    <div class="mb-3">
+      <label for="delay" class="form-label">Delay (seconds):</label>
+      <input type="number" class="form-control" id="delay" name="delay" value="1">
+    </div>
+    <div class="mb-3">
+      <label for="count" class="form-label">Number of Requests per IP:</label>
+      <input type="number" class="form-control" id="count" name="count" value="10">
+    </div>
+    <div class="mb-3">
+      <label for="duration" class="form-label">Attack Duration (seconds):</label>
+      <input type="number" class="form-control" id="duration" name="duration" value="60">
+    </div>
+    <div class="mb-3">
+      <label for="proxy" class="form-label">Upload Proxy File (txt):</label>
+      <input type="file" class="form-control" id="proxy" name="proxy" accept=".txt">
+    </div>
+    <div class="mb-3">
+      <label for="userAgent" class="form-label">Upload User-Agent File (txt):</label>
+      <input type="file" class="form-control" id="userAgent" name="userAgent" accept=".txt">
+    </div>
+    <div class="center-buttons mt-3">
+      <button type="button" onclick="startAttack()" class="btn btn-primary" id="startButton"><i class="fas fa-play"></i> Start DDoS Attack</button>
+      <button type="button" onclick="stopAttack()" class="btn btn-danger" disabled id="stopButton"><i class="fas fa-stop"></i> Stop DDoS Attack</button>
+    </div>
+  </form>
+
+  <!-- Result Section -->
+  <div id="resultBox" class="mt-5">
+    <h1 class="mb-4 text-center">Result <i class="fab fa-telegram"></i></h2>
+    <ul id="resultList"></ul>
+  </div>
+</div>
+
+<footer>
+  <div class="text-center">
+    <a href="https://github.com/naix0x" target="_blank" class="text-dark"><i class="fab fa-github"></i> &copy; 2023 All Rights Reserved.</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  function startAttack() {
+    const formData = new FormData(document.getElementById('ddosForm'));
+    fetch('/start-attack', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      document.getElementById('startButton').disabled = true;
+      document.getElementById('stopButton').disabled = false;
+    })
+    .catch(error => console.error('Error:', error));
+  }
+
+  function stopAttack() {
+    fetch('/stop-attack', { method: 'POST' })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      document.getElementById('startButton').disabled = false;
+      document.getElementById('stopButton').disabled = true;
+    })
+    .catch(error => console.error('Error:', error));
+
+    // Close WebSocket connection
+    socket.close();
+  }
+
+  // WebSocket connection
+  const socket = new WebSocket('ws://localhost:3000');
+
+  socket.addEventListener('message', (event) => {
+    const resultList = document.getElementById('resultList');
+    const listItem = document.createElement('li');
+    listItem.textContent = event.data;
+    resultList.appendChild(listItem);
+  });
+
+  // Hide unhandled rejection errors in console
+  process.on('uncaughtException', function (err) {
+    // console.log(err);
+  });
+  process.on('unhandledRejection', function (err) {
+    // console.log(err);
+  });
+</script>
+</body>
+</html>
