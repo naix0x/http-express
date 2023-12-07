@@ -28,6 +28,21 @@ node app.js
 
 #### Ngrok server
 
+u want to put this web script server online with Ngrok, u can follow the steps below, but u must already have the Ngrok token, if you dont have it, you can register first.
+
+- Installation resource ngrok
+
+```javascript
+curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
+```
+- Change this <token> with u token ngrok
+
+```javascript
+ngrok config add-authtoken <token>
+```
+
+- adjust the port u want to use, 3000 has been provided as in the script.
+
 ```javascript
 ngrok http 3000
 ````
