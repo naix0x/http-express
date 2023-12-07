@@ -8,7 +8,8 @@ Its still the same as other `DDoS ​​HTTP Flood Requests`, in this version it
 
 If u want it to be used so that everyone can use it, u can use `Ngrok` as a server to get it online thid script.
 
-The following is cmd management in bot :
+#### The following is Informstion in detail input
+
 
 | Input       | Information Details |
 |-----------|-------------|
