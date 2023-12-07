@@ -6,5 +6,5 @@
 
 Its still the same as other `DDoS ​​HTTP Flood Requests`, in this version it just adds a web UI to make it more pleasing good. this is made with expressjs and still not fixed for serverless hosting experiments such as vercel, etc. if u want to try serverless, you can add scripted it yourself. cuz only here to make perpose educational lessons.
 
-If you want it to be used so that everyone can use it, you can use `Ngrok` as a server to get it online.
+If u want it to be used so that everyone can use it, u can use `Ngrok` as a server to get it online thid script.
 
