@@ -28,7 +28,7 @@ node app.js
 
 #### Ngrok server
 
-u want to put this web script server online with Ngrok, u can follow the steps below, but u must already have the Ngrok token, if you dont have it, you can first `[Register Ngrok](https://dashboard.ngrok.com/).`
+u want to put this web script server online with Ngrok, u can follow the steps below, but u must already have the Ngrok token, if you dont have it, you can first [Register Ngrok](https://dashboard.ngrok.com/).
 
 
 - Installation resource ngrok
