@@ -8,6 +8,17 @@ Its still the same as other `DDoS ​​HTTP Flood Requests`, in this version it
 
 If u want it to be used so that everyone can use it, u can use `Ngrok` as a server to get it online thid script.
 
+The following is cmd management in bot :
+
+| CMD       | Information |
+|-----------|-------------|
+| URL    | Put with first `http://` |
+| Delay     | Second time |
+| Request per IP     | Whatever what you want put this number |
+| Attack Duration  | Second time |
+| Upload Proxy    | Create a file with any name, but with the `extension .txt` which contains a `proxy list` |
+| Upload User-Agents     | Create a file with any name, but with the `extension .txt` which contains a `User-Agents list` |
+
 #### Requirements
 
 ```javascript
